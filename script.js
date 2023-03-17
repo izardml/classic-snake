@@ -46,8 +46,7 @@ function createFood() {
 }
 
 function drawFood() {
-    drawSquare(food.x, food.y, foodColor)
-    console.log('x: ' + food.x + ' y: ' + food.y)
+    ctx.drawImage(document.getElementById('fruit'), food.x, food.y, cellSize, cellSize)
 }
 
 function setBackground(color1, color2) {
@@ -79,7 +78,13 @@ function createSnake() {
 
 function drawSnake() {
     for(i = 0; i < snake.length; i++) {
-        drawSquare(snake[i].x, snake[i].y, snakeColor)
+        if(i == 0) {
+            ctx.drawImage(document.getElementById('snake-head'), snake[i].x, snake[i].y, cellSize, cellSize)
+        } else if(i == (snake.length - 1)) {
+            ctx.drawImage(document.getElementById('snake-tail'), snake[i].x, snake[i].y, cellSize, cellSize)
+        } else {
+            ctx.drawImage(document.getElementById('snake-body'), snake[i].x, snake[i].y, cellSize, cellSize)
+        }
     }
 }
 
@@ -186,4 +191,4 @@ function newGame() {
     }
 }
 
-// newGame()
+newGame()

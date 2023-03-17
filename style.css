@@ -7,6 +7,7 @@ body {
     text-align: center;
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -16,12 +17,16 @@ body {
     font-family: verdana;
     font-size: 2em;
     color: #000;
-    box-shadow: inset 0 0 32px red;
+    /* box-shadow: inset 0 0 32px red;
     position: absolute;
     width: 1280px;
-    height: 720px;
+    height: 720px; */
 }
 
 canvas {
     border: 5px solid black;
+}
+
+.img {
+    display: none;
 }
