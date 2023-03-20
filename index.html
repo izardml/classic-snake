@@ -6,16 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- ASSETS -->
     <img src="img/fruit.png" class="img" id="fruit">
     <img src="img/snake-head.png" class="img" id="snake-head">
     <img src="img/snake-body.png" class="img" id="snake-body">
     <img src="img/snake-tail.png" class="img" id="snake-tail">
+    
+    <div id="start">
+        <div id="left">
+            <button onclick="startGame()">Play</button>
+            <button>Leaderboard</button>
+        </div>
 
-    <button onclick="newGame()">Start</button>
+        <div id="right">
+            <h1>Classic Snake</h1>
+            <div>
+                <img src="img/logo-icon.png" alt="Gambar">
+            </div>
+        </div>
+    </div>
 
-    <div class="score" id="score">0</div>
+    <div id="end">
+        <h1>GAME OVER</h1>
+
+        <div>
+            <p>Score: <span id="finalScore">0</span></p>
+            <p>Time: <span id="finalTime">0</span> detik</p>
+        </div>
+
+        <div>
+            <button>Play Again</button>
+        </div>
+    </div>
+
+    <div id="game-ui">
+        <div class="score">SCORE: <span id="score">0</div>
+        <div class="score">TIME: <span id="time">0</div>
+    </div>
+
     <canvas id="canvas" width="1280px" height="704px"></canvas>
 
     <script src="script.js"></script>

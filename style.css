@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 body {
@@ -17,16 +19,96 @@ body {
     font-family: verdana;
     font-size: 2em;
     color: #000;
-    /* box-shadow: inset 0 0 32px red;
-    position: absolute;
-    width: 1280px;
-    height: 720px; */
 }
 
 canvas {
     border: 5px solid black;
 }
 
+canvas, #end, #game-ui {
+    display: none;
+}
+
 .img {
     display: none;
+}
+
+#start, #end, #game-ui {
+    width: 1280px;
+    height: 704px;
+    position: absolute;
+}
+
+#end {
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
+}
+
+#start {
+    display: flex;
+    background-color: rgb(149, 220, 41);
+}
+
+#start #left {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1rem;
+    border-right: 4px solid rgb(130, 190, 36);
+}
+
+#start button,
+#end button
+{
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgb(149, 220, 41);
+    color: white;
+    text-shadow: 2px 3px 4px black;
+    font-size: 25px;
+    border: 5px solid white;
+    cursor: pointer;
+    box-shadow: 1px 1px 10px -5px black;
+    transition-duration: 200ms;
+}
+
+#start button:hover,
+#end button:hover
+{
+    box-shadow: 1px 1px 16px -5px black;
+}
+
+#start button:active,
+#end button:active
+{
+    transform: scale(0.9);
+}
+
+#start #right {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    gap: 2rem;
+    justify-content: center;
+}
+
+#start div {
+    width: 100%;
+    height: 100%;
+}
+
+#start img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
 }

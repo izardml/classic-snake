@@ -1,6 +1,8 @@
 var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
 var scoreIs = document.getElementById('score')
+var score = document.getElementById('finalScore')
+var time = document.getElementById('time')
 var direction = ''
 var directionQueue = ''
 var fps = 70
@@ -16,6 +18,7 @@ var food = {
     y: 0
 }
 var score = 0
+var detik = 0
 
 for(i = cellSize; i <= canvas.width - cellSize; i += cellSize) {
     foodX.push(i)
@@ -26,8 +29,6 @@ for(i = cellSize; i <= canvas.height - cellSize * 2; i += cellSize) {
 }
 
 canvas.setAttribute('tabindex', 1)
-canvas.style.outline = 'none'
-canvas.focus()
 
 function drawSquare(x,y,color) {
     ctx.fillStyle = color
@@ -95,7 +96,7 @@ function changeDirection(keycode) {
         directionQueue = 'up'
     } else if(keycode == 39 && direction != 'left') {
         directionQueue = 'right'
-    } else if(keycode == 40 && direction != 'top') {
+    } else if(keycode == 40 && direction != 'up') {
         directionQueue = 'down'
     }
 }
@@ -111,9 +112,9 @@ function moveSnake() {
     } else if(direction == 'left') {
         x-=cellSize
     } else if(direction == 'up') {
-        y-=cellSize;
+        y-=cellSize
     } else if(direction == 'down') {
-        y+=cellSize;
+        y+=cellSize
     }
     
     var tail = snake.pop()
@@ -132,25 +133,20 @@ function checkCollision(x1,y1,x2,y2) {
 
 function game(){
     var head = snake[0]
+
+    // NABRAK TEMBOK
     if(head.x < 0 || head.x > canvas.width - cellSize  || head.y < 0 || head.y > canvas.height - cellSize) {
-        setBackground()
-        createSnake()
-        drawSnake()
-        createFood()
-        drawFood()
-        directionQueue = 'right'
-        score = 0
+        document.getElementById('game-ui').style.display = 'none'
+        document.getElementById('end').style.display = 'flex'
+        clearInterval(interval)
     }
 
+    // NABRAK DEWE
     for(i = 1; i < snake.length; i++) {
         if(head.x == snake[i].x && head.y == snake[i].y) {
-            setBackground()
-            createSnake()
-            drawSnake()
-            createFood()
-            drawFood()
-            directionQueue = 'right'
-            score = 0
+            document.getElementById('game-ui').style.display = 'none'
+            document.getElementById('end').style.display = 'flex'
+            clearInterval(interval)
         }
     }
     
@@ -171,24 +167,27 @@ function game(){
 
     ctx.beginPath()
     setBackground('greenyellow', 'transparent')
+    detik += 0.06
     scoreIs.innerHTML = score
+    time.innerHTML = Math.floor(detik)
+    finalScore.innerHTML = score
+    finalTime.innerHTML = Math.floor(detik)
     drawSnake()
     drawFood()
     moveSnake()
 }
 
-function newGame() {
+function startGame() {
+    document.getElementById('start').style.display = 'none'
+    document.getElementById('game-ui').style.display = 'block'
+    document.getElementById('canvas').style.display = 'block'
+    document.getElementById('canvas').focus()
+
     direction = 'right'
     directionQueue = 'right'
     ctx.beginPath()
     createSnake()
     createFood()
 
-    if(typeof loop != 'undefined') {
-        clearInterval(loop)  
-    } else {
-        loop = setInterval(game, fps)
-    }
+    var interval = setInterval(game, fps)
 }
-
-newGame()
