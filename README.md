@@ -5,11 +5,7 @@
 <p>To do list:</p>
 
 <ul>
-    <li>Gambar Ular (optional)</li>
-    <li>Gambar Buah</li>
-    <li>Gambar Lapangan (Background)</li>
-    <li>Landing Page</li>
-    <li>Scoring Page</li>
     <li>Highscore Page</li>
-    <li>Game UI</li>
+    <li>Game UI sudah lumayan</li>
+    <li>Score Page</li>
 </ul>
