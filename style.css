@@ -15,14 +15,9 @@ body {
     height: 100vh;
 }
 
-.score {
-    font-family: verdana;
-    font-size: 2em;
-    color: #000;
-}
-
 canvas {
-    border: 5px solid black;
+    outline: none;
+    border: 5px solid rgb(130, 190, 36);
 }
 
 canvas, #end, #game-ui {
@@ -45,7 +40,8 @@ canvas, #end, #game-ui {
     flex-direction: column;
     justify-content: space-around;
     background-color: rgba(0, 0, 0, 0.3);
-    /* background-color: rgba(255, 255, 255, 0.3); */
+    color: white;
+    text-shadow: 2px 3px 4px black;
 }
 
 #start {
