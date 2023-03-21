@@ -1,5 +1,6 @@
 var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
+var oldHighscore = document.getElementById('oldHighscore')
 var scoreIs = document.getElementById('score')
 var score = document.getElementById('finalScore')
 var time = document.getElementById('time')
@@ -86,6 +87,7 @@ function drawSnake() {
         } else {
             ctx.drawImage(document.getElementById('snake-body'), snake[i].x, snake[i].y, cellSize, cellSize)
         }
+        // drawSquare(snake[i].x, snake[i].y, 'skyblue')
     }
 }
 
@@ -138,6 +140,11 @@ function game(){
     if(head.x < 0 || head.x > canvas.width - cellSize  || head.y < 0 || head.y > canvas.height - cellSize) {
         document.getElementById('game-ui').style.display = 'none'
         document.getElementById('end').style.display = 'flex'
+        if(score > localStorage.getItem('highscore')) {
+            localStorage.setItem('highscore', score)
+            localStorage.setItem('time', Math.floor(detik))
+            document.getElementById('highscore').style.display = 'block'
+        }
         clearInterval(interval)
     }
 
@@ -146,6 +153,11 @@ function game(){
         if(head.x == snake[i].x && head.y == snake[i].y) {
             document.getElementById('game-ui').style.display = 'none'
             document.getElementById('end').style.display = 'flex'
+            if(score > localStorage.getItem('highscore')) {
+                localStorage.setItem('highscore', score)
+                localStorage.setItem('time', Math.floor(detik))
+                document.getElementById('highscore').style.display = 'block'
+            }
             clearInterval(interval)
         }
     }
@@ -167,9 +179,13 @@ function game(){
 
     ctx.beginPath()
     setBackground('greenyellow', 'transparent')
+
     detik += 0.06
+    
+    oldHighscore.innerHTML = localStorage.getItem('highscore')
     scoreIs.innerHTML = score
     time.innerHTML = Math.floor(detik)
+
     finalScore.innerHTML = score
     finalTime.innerHTML = Math.floor(detik)
     drawSnake()
@@ -190,4 +206,13 @@ function startGame() {
     createFood()
 
     var interval = setInterval(game, fps)
+}
+
+function playAgain() {
+    var url_string = (window.location.href)
+    var url = new URL(url_string)
+    var playAgain = url.searchParams.get('playAgain')
+    if(playAgain) {
+        startGame()
+    }
 }

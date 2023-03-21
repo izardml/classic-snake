@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="playAgain()">
     <!-- ASSETS -->
     <img src="img/fruit.png" class="img" id="fruit">
     <img src="img/snake-head.png" class="img" id="snake-head">
@@ -20,7 +20,12 @@
     <div id="start">
         <div id="left">
             <button onclick="startGame()">Play</button>
-            <button>Leaderboard</button>
+            <button onclick="
+                alert(
+                    'Highscore saat ini adalah ' + localStorage.getItem('highscore') 
+                    + ' dalam waktu ' + localStorage.getItem('time') + ' detik'
+                )
+            ">Leaderboard</button>
         </div>
 
         <div id="right">
@@ -35,16 +40,19 @@
         <h1>GAME OVER</h1>
 
         <div>
+            <h2 id="highscore">New Highscore</h2>
             <p>Score: <span id="finalScore">0</span></p>
             <p>Time: <span id="finalTime">0</span> detik</p>
         </div>
 
         <div>
-            <a href="index.html"><button>Play Again</button></a>
+            <a href="index.html?playAgain=true"><button>Play Again</button></a>
+            <a href="index.html"><button>Home</button></a>
         </div>
     </div>
 
     <div id="game-ui">
+        <div>HIGHSCORE: <span id="oldHighscore">0</div>
         <div>SCORE: <span id="score">0</div>
         <div>TIME: <span id="time">0</div>
     </div>
